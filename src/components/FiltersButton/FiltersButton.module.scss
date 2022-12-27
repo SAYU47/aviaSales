@@ -1,0 +1,27 @@
+.button {
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #dfe5ec;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  max-width: 502px;
+  min-width: 280px;
+  :first-child {
+    border-radius: 10px 0 0 10px;
+  }
+  :last-child {
+    border-radius: 0 10px 10px 0;
+  }
+}
