@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 
 import { checkboxBox } from '../../redux/redusers/transfers-reduser'
-import * as actions from '../../redux/redusers/action'
+import * as actions from '../../redux/action'
 import { State } from '../../types'
 
 import styles from './TransferFilter.module.scss'
@@ -19,8 +19,14 @@ const TransferFilter: React.FC<Properties> = ({ state, toggle, toggleAll }) => {
   const renderCheckbox = checkboxes.map((el: checkboxBox, i: number) => {
     return (
       <div className={styles.checkbox_content} key={uniqid()}>
-        <label>
-          <input type="checkbox" checked={el.checked} value={el.name} onChange={i === 0 ? toggleAll : toggle} />
+        <label className={styles['transfer-count__label']}>
+          <input
+            type="checkbox"
+            checked={el.checked}
+            value={el.name}
+            className={styles['transfer-count__checkbox']}
+            onChange={i === 0 ? toggleAll : toggle}
+          />
           <span>{el.name}</span>
         </label>
       </div>

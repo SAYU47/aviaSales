@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Dispatch } from 'redux'
 
-import { GetCombinateTypes, GetInfoActionTypes } from '../actionsTypes'
+import { GetCombinateTypes, GetInfoActionTypes } from './actions-types'
 
 export const toggle = (event: React.ChangeEvent<HTMLInputElement>) => ({
   type: GetInfoActionTypes.TOGGLE,
@@ -23,7 +23,6 @@ export const getAviaInfo = (id: string) => {
   return async (dispatch: Dispatch<GetCombinateTypes>) => {
     try {
       const response = await axios.get(`https://aviasales-test-api.kata.academy/tickets?searchId=${id}`)
-      // dispatch({ type: GetInfoActionTypes.GETINFO_LOAD, stop: response.data.stop })
       dispatch({ type: GetInfoActionTypes.GETINFO_SUCCESS, payload: response.data.tickets, stop: response.data.stop })
     } catch (err) {
       dispatch({ type: GetInfoActionTypes.GETINFO_ERROR, payload: err })
@@ -32,4 +31,8 @@ export const getAviaInfo = (id: string) => {
 }
 export const showMoreTickets = () => ({
   type: GetInfoActionTypes.ADD_ITEM,
+})
+export const cheapestTickets = (event: React.ChangeEvent<HTMLInputElement>) => ({
+  type: GetInfoActionTypes.TOGGLE_FILTER,
+  name: event.target.value,
 })

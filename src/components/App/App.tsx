@@ -1,6 +1,6 @@
 import React from 'react'
 
-import FilterButtons from '../FiltersButton/FiltersButton'
+import TabsFilter from '../TabsFilter/TabsFilter'
 import AviaList from '../AviaList/AviaList'
 import TransferFilter from '../TransferFilter/TransferFilter'
 import useTypedSelector from '../hooks/useTypedSelector'
@@ -10,7 +10,6 @@ import classes from './App.module.scss'
 
 function App() {
   const stop = useTypedSelector((state) => state.ticketsReduser.stop)
-  console.log(stop)
   const loaderFullData =
     stop === false ? <HeaderLoader /> : <img src="../assets/Logo.png" className={classes.logo} alt="logo" />
   return (
@@ -19,7 +18,7 @@ function App() {
       <div className={classes.app_wrapper}>
         <TransferFilter />
         <div className={classes.app_content}>
-          <FilterButtons />
+          <TabsFilter />
           <AviaList />
         </div>
       </div>

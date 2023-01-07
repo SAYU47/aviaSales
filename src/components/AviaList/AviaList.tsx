@@ -1,23 +1,29 @@
+/* eslint-disable consistent-return */
 import React, { FC, useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 import { Button } from 'antd'
 
-import { RootState } from '../../redux/rootReduser'
-import { getId as session, getAviaInfo as loadCards, showMoreTickets as showTicket } from '../../redux/redusers/action'
+import { RootState } from '../../redux/root-reduser'
+import { getId as session, getAviaInfo as loadCards, showMoreTickets as showTicket } from '../../redux/action'
 import AviaCard from '../AviaCard/AviaCard'
 import Loader from '../../servises/loaders/loader'
+import { TicketTypes } from '../../types'
+import { checkboxBox } from '../../redux/redusers/transfers-reduser'
+import EmptySearchMessage from '../../servises/Alerts/EmptySearchMessage'
 
 import styles from './AviaList.module.scss'
 
-type Properties = {
+type AviaListType = {
   state: RootState
   getId: () => void
   getAviaInfo: (id: string) => void
   showMoreTickets: () => void
 }
-const AviaList: FC<Properties> = ({ state, getId, getAviaInfo, showMoreTickets }) => {
-  const ids = state.ticketsReduser.id
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AviaList: FC<AviaListType> = ({ state, getId, getAviaInfo, showMoreTickets }): any => {
+  const sessionId = state.ticketsReduser.id
   const showItemLength = state.ticketsReduser.itemToShow
   const tickets = state.ticketsReduser.aviaArr
   const errors = state.ticketsReduser.error
@@ -26,49 +32,65 @@ const AviaList: FC<Properties> = ({ state, getId, getAviaInfo, showMoreTickets }
     getId()
   }, [])
   useEffect(() => {
-    if (!state.ticketsReduser.stop && ids) {
-      getAviaInfo(ids)
+    if (!state.ticketsReduser.stop && sessionId) {
+      getAviaInfo(sessionId)
     }
   })
-  const showMore = showItemLength + 5
-  const showCurrTickets = [...tickets].slice(0, showItemLength)
 
-  const buttonShowMore =
-    // eslint-disable-next-line multiline-ternary
-    tickets.length === 0 && !errors ? null : (
-      <Button type="primary" className={styles.button} onClick={showMoreTickets}>
-        Показать ещё 5 билетов
-      </Button>
-    )
+  const transferCountChecked = state.transferReducer.checkboxes.filter((box: checkboxBox) => box.checked)
 
-  const itemList = showCurrTickets.map((el) => {
+  let checkboxSign: number | number[]
+  if (transferCountChecked.length === 5) checkboxSign = -1
+  else if (transferCountChecked.length && transferCountChecked[0].name === 'Без пересадок') checkboxSign = 0
+  else checkboxSign = transferCountChecked.map((box) => (Number.isInteger(+box.name[0]) ? +box.name[0] : 2000))
+
+  let ticketList
+  if (tickets.length > 1) {
+    const listCounted = tickets.filter((ticket: TicketTypes) => {
+      return ticket.segments.slice(0, -1).every((flight) => {
+        if (!checkboxSign && !flight.stops.length) return true
+        if (checkboxSign === -1) return true
+        if (Array.isArray(checkboxSign) && checkboxSign.some((el) => el === flight.stops.length)) return true
+        return false
+      })
+    })
+    ticketList = listCounted.slice(0, showItemLength).map((el) => {
+      return (
+        <li key={uniqid()}>
+          <AviaCard price={el.price} segments={el.segments} carrier={el.carrier} />
+        </li>
+      )
+    })
+    const buttonShowMore =
+      // eslint-disable-next-line multiline-ternary
+      !ticketList.length && !errors ? null : (
+        <Button type="primary" className={styles.button} onClick={showMoreTickets}>
+          Показать ещё 5 билетов
+        </Button>
+      )
+    const EmptyMessage = !ticketList.length && !errors ? <EmptySearchMessage /> : null
+
     return (
-      <li key={uniqid()}>
-        <AviaCard price={el.price} segments={el.segments} carrier={el.carrier} />
-      </li>
+      <>
+        <ul className={styles.wrapper}>
+          {ticketList}
+          {EmptyMessage}
+          {buttonShowMore}
+        </ul>
+      </>
     )
-  })
-  const loader = tickets.length === 0 && !errors ? <Loader /> : null
-  return (
-    <>
-      <ul className={styles.wrapper}>
-        {itemList}
-        {loader}
-        {buttonShowMore}
-      </ul>
-    </>
-  )
+  }
 }
-const mapStateToProperties = (state: RootState) => {
+const mapStateToProps = (state: RootState) => {
   return {
     state,
   }
 }
 
-const mapDispatchToProperties = {
+const mapDispatchToProps = {
   getId: session,
   getAviaInfo: loadCards,
   showMoreTickets: showTicket,
 }
 
-export default connect(mapStateToProperties, mapDispatchToProperties)(AviaList)
+export default connect(mapStateToProps, mapDispatchToProps)(AviaList)

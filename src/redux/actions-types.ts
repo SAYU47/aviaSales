@@ -2,7 +2,6 @@ import { TicketTypes } from '../types'
 
 export interface TicketsState {
   aviaArr: TicketTypes[]
-  loading: boolean
   error: null | boolean
   stop: boolean
   id: string
@@ -17,11 +16,21 @@ export enum GetInfoActionTypes {
   GETINFO_ERROR = 'GETINFO_ERROR',
   ID = 'ID',
   ADD_ITEM = 'ADD_ITEM',
+  CHEAPEST_FILTER = 'CHEAPEST_FILTER',
+  TOGGLE_FILTER = 'TOGGLE_FILTER',
+}
+interface CheckboxAll {
+  type: GetInfoActionTypes.ALL
+}
+interface CheckboxToggle {
+  type: GetInfoActionTypes.TOGGLE
+  name: React.ChangeEvent<HTMLInputElement>
 }
 interface GetInfoAction {
   type: GetInfoActionTypes.GETINFO_LOAD
   stop: boolean
 }
+
 interface GetInfoSuccessAction {
   type: GetInfoActionTypes.GETINFO_SUCCESS
   payload: TicketTypes[]
@@ -39,4 +48,18 @@ interface ADD_ITEM {
   type: GetInfoActionTypes.ADD_ITEM
   payload: number
 }
-export type GetCombinateTypes = GetInfoAction | GetInfoSuccessAction | GetInfoErrorAction | ID | ADD_ITEM
+interface TOGGLE_FILTER {
+  name: string
+  aviaArr?: TicketTypes[]
+  type: GetInfoActionTypes.TOGGLE_FILTER
+  payload: React.ChangeEvent<HTMLInputElement>
+}
+export type GetCombinateTypes =
+  | GetInfoAction
+  | GetInfoSuccessAction
+  | GetInfoErrorAction
+  | ID
+  | ADD_ITEM
+  | TOGGLE_FILTER
+  | CheckboxToggle
+  | CheckboxAll

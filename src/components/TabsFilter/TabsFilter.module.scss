@@ -1,4 +1,4 @@
-.radio_item label {
+.filters__label {
   height: 50px;
   background: #ffffff;
   border: 1px solid #dfe5ec;
@@ -10,6 +10,12 @@
   text-transform: uppercase;
   color: #4a4a4a;
   width: 100%;
+  &:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+  &:last-child {
+    border-radius: 0 6px 6px 0;
+  }
 }
 .wrapper {
   display: flex;
@@ -31,7 +37,6 @@
   justify-content: center;
   cursor: pointer;
   border: 1px solid #999;
-  border-right: none;
   user-select: none;
 }
 
@@ -46,5 +51,9 @@
 /* Checked */
 .wrapper input[type='radio']:checked + label {
   background: #2196f3;
+  color: #ffffff;
+}
+.active {
+  background-color: #2196f3;
   color: #ffffff;
 }

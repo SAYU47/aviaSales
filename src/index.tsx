@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import './index.css'
 import App from './components/App/App'
-import { rootReduser } from './redux/rootReduser'
+import { rootReduser } from './redux/root-reduser'
 
 const store = createStore(rootReduser, composeWithDevTools(applyMiddleware(thunk)))
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

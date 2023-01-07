@@ -43,10 +43,15 @@ const AviaCard: FC<TicketTypes> = ({ price, segments, carrier }) => {
     return 'Без Пересадок'
   }
   const logoImg = `//pics.avs.io/99/36/${carrier}.png`
+  let formatedPrice = price.toString()
+  formatedPrice =
+    formatedPrice.length === 5
+      ? `${formatedPrice.slice(0, 2)} ${formatedPrice.slice(2)}`
+      : `${formatedPrice.slice(0, 3)} ${formatedPrice.slice(3)}`
   return (
     <div className={style.wrapper}>
       <section className={style.priceContainer}>
-        <div className={style.price}>{price} Р</div>
+        <div className={style.price}>{formatedPrice} ₽</div>
         <div>
           <img src={logoImg} alt="лого Авиакомпании" />
         </div>
