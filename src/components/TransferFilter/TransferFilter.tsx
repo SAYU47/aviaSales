@@ -7,7 +7,7 @@ import * as actions from '../../redux/action'
 import { State } from '../../types'
 
 import styles from './TransferFilter.module.scss'
-
+console.log('sadasd')
 type Properties = {
   state: State
   toggle: ChangeEventHandler<HTMLElement>
