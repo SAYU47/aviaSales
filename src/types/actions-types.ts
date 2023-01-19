@@ -63,4 +63,3 @@ export type GetCombinateTypes =
   | TOGGLE_FILTER
   | CheckboxToggle
   | CheckboxAll
-export { TicketTypes }
