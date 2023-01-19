@@ -2,9 +2,9 @@ import React, { ChangeEventHandler } from 'react'
 import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 
-import { checkboxBox } from '../../store/redusers/transfers-reduser'
-import * as actions from '../../store/action'
-import { State } from '../../types/state-types'
+import { checkboxBox } from '@store/redusers/transfers-reduser'
+import * as actions from '@store/action'
+import { State } from 'state-types'
 
 import styles from './TransferFilter.module.scss'
 

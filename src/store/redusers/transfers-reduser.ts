@@ -1,4 +1,4 @@
-import { GetInfoActionTypes } from '../../types/actions-types'
+import { GetInfoActionTypes } from 'actions-types'
 
 interface Action {
   type: string

@@ -1,4 +1,4 @@
-import { GetCombinateTypes, GetInfoActionTypes, TicketsState } from '../../types/actions-types'
+import { GetInfoActionTypes } from 'actions-types'
 
 export interface TabsAction {
   type: string

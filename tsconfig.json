@@ -4,7 +4,9 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@store/*":["src/store/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "actions-types":["src/types/actions-types"],
+      "state-types":["src/types/state-types"]
     },   
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

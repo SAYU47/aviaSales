@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { add, format, minutesToHours } from 'date-fns'
 
-import { TicketTypes } from '../../types/state-types'
+import { TicketTypes } from 'actions-types'
 
 import style from './AviaCard.module.scss'
 

@@ -51,7 +51,7 @@
     "react/prop-types": 0,
     "import/extensions": "off",
     "default-param-last": "off",
-    "import/no-unresolved": [1, { "caseSensitive": false }],
+    "import/no-unresolved": [0, { "caseSensitive": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", "ts"] }],
     "import/order": [
       0,

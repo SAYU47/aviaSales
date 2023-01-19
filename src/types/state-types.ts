@@ -1,5 +1,5 @@
-import { TabsState } from '../store/redusers/tabs-reduser'
-import { CheckboxState } from '../store/redusers/transfers-reduser'
+import { TabsState } from '@store/redusers/tabs-reduser'
+import { CheckboxState } from '@store/redusers/transfers-reduser'
 
 import { TicketsState } from './actions-types'
 

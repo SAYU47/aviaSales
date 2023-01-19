@@ -1,5 +1,4 @@
 import React from 'react'
-import { Alert, Space } from 'antd'
 
 import './EmptySearchMessage.scss'
 

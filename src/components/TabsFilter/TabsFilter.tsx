@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 
 import { cheapestTickets as LoadCheapTicket } from '../../store/action'
-import { State } from '../../types/state-types'
+import { State } from 'state-types'
 
 import styles from './TabsFilter.module.scss'
 

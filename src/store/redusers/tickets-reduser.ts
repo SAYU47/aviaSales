@@ -1,5 +1,5 @@
-import { TicketTypes } from '../../types/state-types'
-import { TicketsState, GetInfoActionTypes, GetCombinateTypes } from '../../types/actions-types'
+import { TicketTypes } from 'state-types'
+import { TicketsState, GetInfoActionTypes, GetCombinateTypes } from 'actions-types'
 
 const initialState: TicketsState = {
   aviaArr: [],

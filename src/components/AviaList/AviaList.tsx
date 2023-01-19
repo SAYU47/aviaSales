@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 import { Button } from 'antd'
 
-import AviaCard from '../AviaCard/AviaCard'
-import { RootState } from '../../store/root-reduser'
-import { getId as session, getAviaInfo as loadCards, showMoreTickets as showTicket } from '../../store/action'
-import { TicketTypes } from '../../types/state-types'
-import { checkboxBox } from '../../store/redusers/transfers-reduser'
-import EmptySearchMessage from '../Alerts/EmptySearchMessage'
+import AviaCard from '@components/AviaCard/AviaCard'
+import { RootState } from '@store/root-reduser'
+import { getId as session, getAviaInfo as loadCards, showMoreTickets as showTicket } from '@store/action'
+import { TicketTypes } from 'state-types'
+import { checkboxBox } from '@store/redusers/transfers-reduser'
+import EmptySearchMessage from '@components/Alerts/EmptySearchMessage'
 
 import styles from './AviaList.module.scss'
 
