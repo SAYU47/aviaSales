@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import { add, format, minutesToHours } from 'date-fns'
 
-import { TicketTypes } from '../../types'
+import { TicketTypes } from '../../types/state-types'
 
 import style from './AviaCard.module.scss'
 
 const AviaCard: FC<TicketTypes> = ({ price, segments, carrier }) => {
-  const oneSegment = segments.map((el) => {
-    return el
+  const oneSegment = segments.map((element) => {
+    return element
   })
 
   const firstWay = oneSegment[0]

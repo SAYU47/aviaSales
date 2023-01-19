@@ -1,6 +1,7 @@
-import { TicketsState } from './redux/actions-types'
-import { TabsState } from './redux/redusers/tabs-reduser'
-import { CheckboxState } from './redux/redusers/transfers-reduser'
+import { TabsState } from '../store/redusers/tabs-reduser'
+import { CheckboxState } from '../store/redusers/transfers-reduser'
+
+import { TicketsState } from './actions-types'
 
 export type State = {
   transferReducer: CheckboxState

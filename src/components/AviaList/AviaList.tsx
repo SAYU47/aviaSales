@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 import { Button } from 'antd'
 
-import { RootState } from '../../redux/root-reduser'
-import { getId as session, getAviaInfo as loadCards, showMoreTickets as showTicket } from '../../redux/action'
 import AviaCard from '../AviaCard/AviaCard'
-import Loader from '../../servises/loaders/loader'
-import { TicketTypes } from '../../types'
-import { checkboxBox } from '../../redux/redusers/transfers-reduser'
-import EmptySearchMessage from '../../servises/Alerts/EmptySearchMessage'
+import { RootState } from '../../store/root-reduser'
+import { getId as session, getAviaInfo as loadCards, showMoreTickets as showTicket } from '../../store/action'
+import { TicketTypes } from '../../types/state-types'
+import { checkboxBox } from '../../store/redusers/transfers-reduser'
+import EmptySearchMessage from '../Alerts/EmptySearchMessage'
 
 import styles from './AviaList.module.scss'
 
@@ -47,17 +46,17 @@ const AviaList: FC<AviaListType> = ({ state, getId, getAviaInfo, showMoreTickets
   let ticketList
   if (tickets.length > 1) {
     const listCounted = tickets.filter((ticket: TicketTypes) => {
-      return ticket.segments.slice(0, -1).every((flight) => {
+      return ticket.segments.every((flight) => {
         if (!checkboxSign && !flight.stops.length) return true
         if (checkboxSign === -1) return true
         if (Array.isArray(checkboxSign) && checkboxSign.some((el) => el === flight.stops.length)) return true
         return false
       })
     })
-    ticketList = listCounted.slice(0, showItemLength).map((el) => {
+    ticketList = listCounted.slice(0, showItemLength).map((ticket) => {
       return (
         <li key={uniqid()}>
-          <AviaCard price={el.price} segments={el.segments} carrier={el.carrier} />
+          <AviaCard price={ticket.price} segments={ticket.segments} carrier={ticket.carrier} />
         </li>
       )
     })

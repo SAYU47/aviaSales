@@ -1,4 +1,4 @@
-import { TicketTypes } from '../types'
+import { TicketTypes } from './state-types'
 
 export interface TicketsState {
   aviaArr: TicketTypes[]

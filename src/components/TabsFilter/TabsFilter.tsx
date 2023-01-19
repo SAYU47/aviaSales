@@ -1,10 +1,9 @@
 import React, { ChangeEventHandler } from 'react'
 import { connect } from 'react-redux'
-import { createNoSubstitutionTemplateLiteral } from 'typescript'
 import uniqid from 'uniqid'
 
-import { cheapestTickets as LoadCheapTicket } from '../../redux/action'
-import { State } from '../../types'
+import { cheapestTickets as LoadCheapTicket } from '../../store/action'
+import { State } from '../../types/state-types'
 
 import styles from './TabsFilter.module.scss'
 

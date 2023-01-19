@@ -2,13 +2,12 @@ import React, { ChangeEventHandler } from 'react'
 import { connect } from 'react-redux'
 import uniqid from 'uniqid'
 
-import { checkboxBox } from '../../redux/redusers/transfers-reduser'
-import * as actions from '../../redux/action'
-import { State } from '../../types'
+import { checkboxBox } from '../../store/redusers/transfers-reduser'
+import * as actions from '../../store/action'
+import { State } from '../../types/state-types'
 
 import styles from './TransferFilter.module.scss'
 
-console.log('sadsdasdsdsadsdasfdfd')
 type Properties = {
   state: State
   toggle: ChangeEventHandler<HTMLElement>
@@ -17,18 +16,18 @@ type Properties = {
 
 const TransferFilter: React.FC<Properties> = ({ state, toggle, toggleAll }) => {
   const { checkboxes } = state.transferReducer
-  const renderCheckbox = checkboxes.map((el: checkboxBox, i: number) => {
+  const renderCheckbox = checkboxes.map((element: checkboxBox, index: number) => {
     return (
       <div className={styles.checkbox_content} key={uniqid()}>
         <label className={styles['transfer-count__label']}>
           <input
             type="checkbox"
-            checked={el.checked}
-            value={el.name}
+            checked={element.checked}
+            value={element.name}
             className={styles['transfer-count__checkbox']}
-            onChange={i === 0 ? toggleAll : toggle}
+            onChange={index === 0 ? toggleAll : toggle}
           />
-          <span>{el.name}</span>
+          <span>{element.name}</span>
         </label>
       </div>
     )

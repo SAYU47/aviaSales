@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Dispatch } from 'redux'
 
-import { GetCombinateTypes, GetInfoActionTypes } from './actions-types'
+import { GetCombinateTypes, GetInfoActionTypes } from '../types/actions-types'
 
 export const toggle = (event: React.ChangeEvent<HTMLInputElement>) => ({
   type: GetInfoActionTypes.TOGGLE,

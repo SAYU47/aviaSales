@@ -10,7 +10,6 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier",
-    // "prettier/@typescript-eslint",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:import/errors",
@@ -18,6 +17,8 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./",
     "ecmaFeatures": {
       "jsx": true
     },
@@ -37,7 +38,7 @@
     ],
     "no-unused-vars": 0,
     "@typescript-eslint/no-unused-vars": 0,
-    
+    "@typescript-eslint/no-var-requires": "error",
     "react/jsx-indent-props": ["error", 2],
     "react/jsx-indent": ["error", 2],
     "prettier/prettier": "error",
@@ -50,10 +51,10 @@
     "react/prop-types": 0,
     "import/extensions": "off",
     "default-param-last": "off",
-    "import/no-unresolved": [2, { "caseSensitive": false }],
+    "import/no-unresolved": [1, { "caseSensitive": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", "ts"] }],
     "import/order": [
-      2,
+      0,
       {
         "groups": [
           "builtin",
@@ -69,12 +70,15 @@
   },
   "settings": {
     "react": {
-      "version": "999.999.999"
+      "version": "detect"
     },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "moduleDirectory": ["node_modules", "src/"]
+      },
+      "typescript":{
+        "alwaysTryTypes": true
       }
     }
   }
